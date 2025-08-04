@@ -1,8 +1,13 @@
+package com.example.converter.controller;
+
+import com.example.converter.model.ExchangeRates;
+import com.example.converter.util.APIService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
 import java.util.Map;
 
-public class Controller {
+public class ConverterController {
     @FXML
     private TextField amountField;
     @FXML
@@ -24,7 +29,7 @@ public class Controller {
             fromCurrency.setValue("USD");
             toCurrency.setValue("EUR");
         } else {
-            resultLabel.setText("Failed to fetch data.");
+            resultLabel.setText("Error loading exchange rates.");
         }
     }
 
@@ -34,10 +39,12 @@ public class Controller {
             double amount = Double.parseDouble(amountField.getText());
             double from = rates.get(fromCurrency.getValue());
             double to = rates.get(toCurrency.getValue());
-            double converted = (amount / from) * to;
-            resultLabel.setText(String.format("%.2f %s = %.2f %s", amount, fromCurrency.getValue(), converted, toCurrency.getValue()));
+            double result = (amount / from) * to;
+
+            resultLabel.setText(String.format("%.2f %s = %.2f %s",
+                    amount, fromCurrency.getValue(), result, toCurrency.getValue()));
         } catch (Exception e) {
-            resultLabel.setText("Invalid input or error.");
+            resultLabel.setText("Error in conversion.");
         }
     }
 }
