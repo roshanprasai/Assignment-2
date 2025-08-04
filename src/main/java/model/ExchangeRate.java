@@ -1,8 +1,8 @@
-package com.example.converter.model;
+package model;
 
 import java.util.Map;
 
-public class ExchangeRates {
+public class ExchangeRate {
     private String result;
     private String base_code;
     private Map<String, Double> conversion_rates;
