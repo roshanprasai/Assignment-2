@@ -1,18 +1,20 @@
-package main;
+package com.example.converter;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/converter.fxml"));
-        primaryStage.setTitle("Currency Converter");
-        primaryStage.setScene(new Scene(root, 400, 300));
-        primaryStage.show();
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/converter.fxml"));
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+
+        stage.setTitle("Currency Converter");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {
